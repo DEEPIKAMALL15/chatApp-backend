@@ -57,6 +57,9 @@ app.listen( PORT , () =>{
     app.use(cors(corsOption));
     
     // routes
+    app.get("/",(req,res)=>{
+        return res.send("Backend is running");
+    })
     app.use("/api/v1/user", userRoute);
     app.use("/api/v1/message", messageRoute);
     
