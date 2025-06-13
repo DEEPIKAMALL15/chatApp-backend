@@ -50,16 +50,11 @@ app.listen( PORT , () =>{
     app.use(express.json());
     app.use(cookieParser());
     
-    const corsOption = {
-        origin: process.env.FRONTEND,
-        credentials: true
-    };
-    app.use(cors(corsOption));
-    app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", process.env.FRONTEND);
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+    app.use(cors({
+  origin: process.env.FRONTEND,
+  credentials: true,
+}));
+    
 
     
     // routes
