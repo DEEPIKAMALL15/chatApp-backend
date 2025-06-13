@@ -63,12 +63,20 @@ export const login = async (req,res) => {
         };
         const token = await jwt.sign(tokenData , process.env.JWT_SECRET_KEY,{expiresIn:'1d'});
         
-        return res.status(200).cookie("token",token , {maxAge:1*24*60*60*1000 , httpOnly:true , sameSite:'strict'}).json({
-            _id:user._id,
-            userName:user.userName,
-            fullName:user.fullName,
-            profilePhoto:user.profilePhoto
-        })
+        return res.status(200)
+  .cookie("token", token, {
+    httpOnly: true,
+    secure: true,            
+    sameSite: "None",        
+    maxAge: 24 * 60 * 60 * 1000 // 1 day
+  })
+  .json({
+    _id: user._id,
+    userName: user.userName,
+    fullName: user.fullName,
+    profilePhoto: user.profilePhoto
+  });
+
 
     }catch(error) {
         console.log(error);
