@@ -41,7 +41,7 @@ app.listen( PORT , () =>{
     import cookieParser from "cookie-parser";
     import cors from "cors";
     import { app, server } from "./socket/socket.js";
-    
+    connectDB();
     dotenv.config();
     console.log("Allowed frontend origin:", process.env.FRONTEND);
     
